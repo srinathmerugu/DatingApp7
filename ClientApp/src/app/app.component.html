@@ -1,0 +1,10 @@
+<p>Hello {{ title }}</p>
+<ul>
+  @for(user of users; track user.id) {
+  <li>
+    {{ user.userName }}
+  </li>
+  }
+</ul>
+
+<button type="button" class="mx-2 btn btn-danger">Single Button</button>
