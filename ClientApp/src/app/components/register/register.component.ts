@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserDto } from '../../models/user-dto';
 import { AccountService } from '../../services/account.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,10 @@ export class RegisterComponent {
   @Output() cancelRegister = new EventEmitter<any>();
   userInfo: UserDto = <UserDto>{};
 
-  constructor(private accountService: AccountService) {}
+  constructor(
+    private accountService: AccountService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -28,7 +32,7 @@ export class RegisterComponent {
         console.log(user);
         this.cancel();
       },
-      error: (err: any) => console.log(err),
+      error: (error: any) => this.toastr.error(error.error),
     });
   }
 }
