@@ -1,31 +1,38 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
+import { NavComponent } from './components/nav/nav.component';
+import { User } from './models/user';
+import { AccountService } from './services/account.service';
+import { HomeComponent } from './components/home/home.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HttpClientModule, FormsModule, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  imports: [
+    RouterOutlet,
+    FormsModule,
+    CommonModule,
+    NavComponent,
+    HomeComponent,
+  ],
 })
 export class AppComponent {
-  title = 'ClientApp';
-  users: any;
+  title = 'Dating App';
 
-  constructor(private http: HttpClient) {}
+  constructor(private accountService: AccountService) {}
 
   ngOnInit() {
-    this.setUsers();
+    this.setCurrentUser();
   }
 
-  private setUsers() {
-    this.http.get('https://localhost:5001/api/users').subscribe({
-      next: (users: any) => (this.users = users),
-      error: (err: any) => console.log(err),
-      complete: () => console.log('done'),
-    });
+  private setCurrentUser() {
+    const user = localStorage.getItem('user');
+    if (!user) return;
+    const currentUser: User = JSON.parse(user);
+    this.accountService.emitCurrentUser(currentUser);
   }
 }
