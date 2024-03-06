@@ -8,3 +8,10 @@ dotnet_naming_symbols.private_fields.applicable_accessibilities = private
 
 dotnet_naming_style.prefix_underscore.capitalization = camel_case
 dotnet_naming_style.prefix_underscore.required_prefix = _
+
+# CA1711: Identifiers should not have incorrect suffix
+dotnet_diagnostic.CA1711.severity = none
+
+
+# CA1711: Identifiers should not have incorrect suffix
+dotnet_diagnostic.CA1711.severity = none

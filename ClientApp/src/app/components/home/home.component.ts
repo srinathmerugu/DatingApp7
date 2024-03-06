@@ -33,6 +33,10 @@ export class HomeComponent {
     });
   }
 
+  getError() {
+    this.http.get('https://localhost:5001/api/buggy/server-error').subscribe();
+  }
+
   cancelRegister(isCancelled: boolean) {
     this.registerMode = isCancelled;
   }

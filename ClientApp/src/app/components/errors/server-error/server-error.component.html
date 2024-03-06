@@ -1,0 +1,39 @@
+<!-- <h4>Internal server error - refreshing the page will make the error disappear</h4> -->
+@if(error){
+<!-- <ng-container>
+    <h5 class="text-danger">Error: {{error.message}}</h5>
+</ng-container> -->
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Modal</h4>
+        <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>{{error.message}}</p>
+        <p>{{error.details}}</p>
+    </div>
+
+</ng-template>
+<!-- <ng-template #template>
+    <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="dialog-sizes-name1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="dialog-sizes-name1" class="modal-title pull-left">Large modal</h4>
+                    <button type="button" class="btn-close close pull-right" (click)="lgModal.hide()"
+                        aria-label="Close">
+                        <span aria-hidden="true" class="visually-hidden">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>{{error.message}}</p>
+                    <p>{{error.details}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template> -->
+}

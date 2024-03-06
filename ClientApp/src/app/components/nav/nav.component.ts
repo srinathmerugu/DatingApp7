@@ -38,7 +38,6 @@ export class NavComponent {
         const message = 'Welcome ' + userInfo.username + ' !';
         this.toastr.success(message);
       },
-      error: (error: any) => this.toastr.error(error.error),
     });
   }
 
