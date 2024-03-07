@@ -11,6 +11,7 @@ namespace API.Entities
         public string PublicId { get; set; }
 
         public int AppUserId { get; set; }
+        //Fully defined relationship, photo can only be added if we're adding it to a user
         public AppUser AppUser { get; set; }
     }
 }

@@ -16,21 +16,12 @@ export class HomeComponent {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.getUsers();
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
   }
 
   registerToggle() {
     this.registerMode = !this.registerMode;
-  }
-
-  private getUsers() {
-    this.http.get('https://localhost:5001/api/users').subscribe({
-      next: (users: any) => (this.users = users),
-      error: (err: any) => console.log(err),
-      complete: () => console.log('done'),
-    });
   }
 
   getError() {
