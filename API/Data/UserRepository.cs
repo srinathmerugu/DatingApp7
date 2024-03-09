@@ -35,7 +35,7 @@ namespace API.Data
             return await _context.Users.FindAsync(id);
         }
 
-        public async Task<AppUser> GetUserByUsername(string username)
+        public async Task<AppUser> GetUserByUsernameAsync(string username)
         {
             return await _context.Users.Include(user => user.Photos).SingleOrDefaultAsync(user => user.UserName == username);
         }
@@ -47,7 +47,7 @@ namespace API.Data
 
         public async Task<bool> SaveAllAsync()
         {
-            return await _context.SaveChangesAsync() > 1;
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public void Update(AppUser user)

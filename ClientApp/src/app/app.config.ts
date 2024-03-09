@@ -8,16 +8,21 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { errorInterceptor } from './interceptors/error.interceptor';
 import { jwtInterceptor } from './interceptors/jwt.interceptor';
 import { GALLERY_CONFIG, GalleryConfig } from 'ng-gallery';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { spinnerInterceptor } from './interceptors/spinner.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(withInterceptors([errorInterceptor, jwtInterceptor])),
+    provideHttpClient(
+      withInterceptors([errorInterceptor, jwtInterceptor, spinnerInterceptor])
+    ),
     provideAnimations(),
     importProvidersFrom(
       ToastrModule.forRoot({
         positionClass: 'toast-bottom-right',
-      })
+      }),
+      NgxSpinnerModule.forRoot({ type: 'line-scale-party' })
     ),
     BsModalService,
     {

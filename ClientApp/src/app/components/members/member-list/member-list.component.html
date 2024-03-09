@@ -1,5 +1,5 @@
 <div class="row">
-    @for(member of members; track member.userName){
+    @for(member of members$ | async; track member.userName){
     <div class="col-2">
         <app-member-card [member]="member"></app-member-card>
     </div>

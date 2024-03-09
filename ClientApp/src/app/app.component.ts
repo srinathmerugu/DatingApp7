@@ -6,6 +6,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { User } from './models/user';
 import { AccountService } from './services/account.service';
 import { HomeComponent } from './components/home/home.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import { HomeComponent } from './components/home/home.component';
     RouterOutlet,
     FormsModule,
     CommonModule,
+    NgxSpinnerModule,
     NavComponent,
     HomeComponent,
   ],
