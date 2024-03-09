@@ -8,13 +8,14 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { PhotoEditorComponent } from '../photo-editor/photo-editor.component';
 
 @Component({
   selector: 'app-member-edit',
   standalone: true,
-  imports: [FormsModule, CommonModule, TabsModule],
   templateUrl: './member-edit.component.html',
   styleUrl: './member-edit.component.scss',
+  imports: [FormsModule, CommonModule, TabsModule, PhotoEditorComponent],
 })
 export class MemberEditComponent {
   @ViewChild('editForm', { static: false }) editForm: NgForm | undefined;

@@ -16,16 +16,15 @@
       </ng-container>
       }
     </ul>
-    @if(accountService.currentUser$ | async){
-    <div class="dropdown cursor-pointer" dropdown>
-      <a class="dropdown-toggle text-light text-decoration-none" dropdownToggle>Welcome {{(accountService.currentUser$ |
-        async)?.username | titlecase}}</a>
+    <div *ngIf="(accountService.currentUser$ | async) as user" class="dropdown cursor-pointer" dropdown>
+      <img src="{{user.photoUrl || './assets/user.png'}}" alt="user photo">
+      <a class="dropdown-toggle text-light text-decoration-none ms-2" dropdownToggle>Welcome {{user?.username |
+        titlecase}}</a>
       <div class="dropdown-menu" *dropdownMenu>
         <a class="dropdown-item" routerLink="/member/edit">Edit Profile</a>
         <a class="dropdown-item" (click)="logout()">Logout</a>
       </div>
     </div>
-    }
     @if(!(accountService.currentUser$ | async)){
     <form #loginForm="ngForm" class="d-flex" (ngSubmit)="login()">
       <input name="username" [(ngModel)]="userInfo.userName" class="form-control me-2" type="text"

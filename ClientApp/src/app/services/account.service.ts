@@ -39,7 +39,7 @@ export class AccountService {
       );
   }
 
-  private setUserInfoInLocalStorageAndEmitUser(registeredUserInfo: User) {
+  setUserInfoInLocalStorageAndEmitUser(registeredUserInfo: User) {
     localStorage.setItem('user', JSON.stringify(registeredUserInfo));
     this.emitCurrentUser(registeredUserInfo);
   }
