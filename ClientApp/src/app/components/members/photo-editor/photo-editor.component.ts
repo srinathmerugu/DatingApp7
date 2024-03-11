@@ -71,9 +71,14 @@ export class PhotoEditorComponent {
       status: number,
       headers: ParsedResponseHeaders
     ) => {
-      if (response) {
+      if (response && this.user && this.member) {
         const photo = JSON.parse(response);
-        this.member?.photos.push(photo);
+        this.member.photos.push(photo);
+        if (photo.isMain) {
+          this.user.photoUrl = photo.url;
+          this.member.photoUrl = photo.url;
+          this.accountService.setUserInfoInLocalStorageAndEmitUser(this.user);
+        }
       }
     };
   }

@@ -135,7 +135,7 @@ namespace API.Controllers
                 if (result.Error != null) return BadRequest(result.Error.Message);
             }
 
-            user.Photos.Remove(photo);
+            user.Photos.Remove(photo); // add this method to notes
 
             if (await _userRepository.SaveAllAsync()) return Ok();
 
