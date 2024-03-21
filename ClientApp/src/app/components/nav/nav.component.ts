@@ -27,9 +27,9 @@ export class NavComponent {
     protected accountService: AccountService,
     private router: Router,
     private toastr: ToastrService
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   login() {
     this.accountService.login(this.userInfo).subscribe({
@@ -47,5 +47,5 @@ export class NavComponent {
     this.toastr.success('logged out');
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void { }
 }
