@@ -9,13 +9,14 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { PhotoEditorComponent } from '../photo-editor/photo-editor.component';
+import { TimeagoModule } from 'ngx-timeago';
 
 @Component({
   selector: 'app-member-edit',
   standalone: true,
   templateUrl: './member-edit.component.html',
   styleUrl: './member-edit.component.scss',
-  imports: [FormsModule, CommonModule, TabsModule, PhotoEditorComponent],
+  imports: [FormsModule, CommonModule, TabsModule, PhotoEditorComponent, TimeagoModule],
 })
 export class MemberEditComponent {
   @ViewChild('editForm', { static: false }) editForm: NgForm | undefined;

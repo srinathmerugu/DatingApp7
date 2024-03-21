@@ -5,11 +5,13 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { GalleryItem, GalleryModule, ImageItem } from 'ng-gallery';
 import { Photo } from '../../../models/photo';
+import { CommonModule } from '@angular/common';
+import { TimeagoModule } from 'ngx-timeago';
 
 @Component({
   selector: 'app-member-detail',
   standalone: true,
-  imports: [RouterLink, TabsModule, GalleryModule],
+  imports: [RouterLink, TabsModule, GalleryModule, CommonModule, TimeagoModule],
   templateUrl: './member-detail.component.html',
   styleUrl: './member-detail.component.scss',
 })
@@ -20,7 +22,7 @@ export class MemberDetailComponent {
   constructor(
     private memberService: MemberService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loadMember();

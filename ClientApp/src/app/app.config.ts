@@ -10,6 +10,7 @@ import { jwtInterceptor } from './interceptors/jwt.interceptor';
 import { GALLERY_CONFIG, GalleryConfig } from 'ng-gallery';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { spinnerInterceptor } from './interceptors/spinner.interceptor';
+import { TimeagoModule } from 'ngx-timeago';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,7 +23,8 @@ export const appConfig: ApplicationConfig = {
       ToastrModule.forRoot({
         positionClass: 'toast-bottom-right',
       }),
-      NgxSpinnerModule.forRoot({ type: 'line-scale-party' })
+      NgxSpinnerModule.forRoot({ type: 'line-scale-party' },),
+      TimeagoModule.forRoot()
     ),
     BsModalService,
     {
