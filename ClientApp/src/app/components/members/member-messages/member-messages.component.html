@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-body">
+        @if(messages.length === 0){
+        <div>No messages yet... Say hi by sending a message below!</div>
+        }@else {
+        <ul class="chat">
+            <li *ngFor="let message of messages">
+                <div class="d-flex align-items-center">
+                    <span class="chat-img">
+                        <img src="{{message.senderPhotoUrl || './assets/user.png'}}" alt="sender photo"
+                            class="rounded-circle">
+                    </span>
+                    <strong class="mx-1">{{message.senderUserName | titlecase}}</strong>
+                    <div class="chat-body">
+                        <div class="header">
+                            <small class="text-muted">
+                                <span class="fa fa-clock-o"> {{message.messageSent + 'Z' | timeago}}</span>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span class="ms-4 me-2">{{message.content}}</span>
+                    @if(!message.dateRead && message.senderUserName !== userName){
+                    <span class="text-default" tooltip="{{message.messageSent + 'Z' | timeago}}"> <i
+                            class="fa fa-check-circle-o"></i></span>
+                    } @else {
+                    <span class="text-success" tooltip="{{message.dateRead + 'Z' | timeago}}"> <i
+                            class="fa fa-check-circle"></i></span>
+                    }
+                </div>
+            </li>
+        </ul>
+        }
+    </div>
+    <div class="my-2 mx-2">
+        <form #messageForm="ngForm" (submit)="sendMessage()" autocomplete="off">
+            <div class="input-group">
+                <input type="text" name="messageContent" [(ngModel)]="messageContent" class="form-control"
+                    placeholder="send a private message" required>
+                <!-- <div class="input-group-append"> -->
+                <button [disabled]="!messageForm.valid" class="btn btn-primary" type="submit"><i
+                        class="fa fa-brands fa-telegram"></i></button>
+                <!-- </div> -->
+            </div>
+        </form>
+    </div>
+</div>
