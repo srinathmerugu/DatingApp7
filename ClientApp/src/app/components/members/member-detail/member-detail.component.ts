@@ -1,4 +1,4 @@
-import { Component, ViewChild, viewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Member } from '../../../models/member';
 import { MemberService } from '../../../services/member.service';
 import { ActivatedRoute, Data, Params, RouterLink } from '@angular/router';

@@ -51,6 +51,21 @@ export class MessagesComponent {
     })
   }
 
+  loadUnReadMessages() {
+    this.pageNumber = 1;
+    this.loadMessages();
+  }
+
+  loadInboxMessages() {
+    this.pageNumber = 1;
+    this.loadMessages();
+  }
+
+  loadOutboxMessages() {
+    this.pageNumber = 1;
+    this.loadMessages();
+  }
+
   pageChanged(event: any) {
     if (this.pageNumber != event.page) {
       this.pageNumber = event.page;

@@ -13,9 +13,9 @@ export class AccountService {
   private currentUser = new BehaviorSubject<User | null>(null);
   currentUser$ = this.currentUser.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  login(userInfo: UserDto): Observable<any> {
+  login(userInfo: UserDto): Observable<User> {
     return this.http.post<User>(this.baseUrl + 'account/login', userInfo).pipe(
       map((loggedInUserInfo: User) => {
         if (loggedInUserInfo) {
@@ -39,9 +39,12 @@ export class AccountService {
       );
   }
 
-  setUserInfoInLocalStorageAndEmitUser(registeredUserInfo: User) {
-    localStorage.setItem('user', JSON.stringify(registeredUserInfo));
-    this.emitCurrentUser(registeredUserInfo);
+  setUserInfoInLocalStorageAndEmitUser(user: User) {
+    user.roles = [];
+    const roles = this.getDecodedToken(user.token).role;
+    Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.emitCurrentUser(user);
   }
 
   emitCurrentUser(user: User | null) {
@@ -51,5 +54,9 @@ export class AccountService {
   logout() {
     localStorage.removeItem('user');
     this.emitCurrentUser(null);
+  }
+
+  getDecodedToken(token: string) {
+    return JSON.parse(atob(token.split('.')[1]));
   }
 }

@@ -39,7 +39,7 @@ export class RegisterComponent {
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.initializeForm();

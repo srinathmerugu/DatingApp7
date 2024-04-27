@@ -6,6 +6,10 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { User } from '../../models/user';
+import { UserParams } from '../../models/user-params';
+import { MemberService } from '../../services/member.service';
+import { HasRoleDirective } from '../../directives/has-role.directive';
 
 @Component({
   selector: 'app-nav',
@@ -16,6 +20,7 @@ import { ToastrService } from 'ngx-toastr';
     BsDropdownModule,
     RouterLink,
     RouterLinkActive,
+    HasRoleDirective
   ],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss',
@@ -25,6 +30,7 @@ export class NavComponent {
 
   constructor(
     protected accountService: AccountService,
+    private memberService: MemberService,
     private router: Router,
     private toastr: ToastrService
   ) { }
@@ -33,7 +39,9 @@ export class NavComponent {
 
   login() {
     this.accountService.login(this.userInfo).subscribe({
-      next: (userInfo: any) => {
+      next: (userInfo: User) => {
+        const userParams = new UserParams(userInfo);
+        this.memberService.setUserParams(userParams);
         this.router.navigateByUrl('/members');
         const message = 'Welcome ' + userInfo.username + ' !';
         this.toastr.success(message);
